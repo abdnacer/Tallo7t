@@ -30,16 +30,25 @@ class SignupController{
   }
 
   public function signin(){
-    $signin = new UserModal;
-    $signin = $signin->getUser();
-    print_r($signin);
-    if($signin['role'] == 'artiste'){
-      header('location: homeArtiste');
+    if(isset($_POST['submit'])){
+      $data = array(
+        'email' => $_POST['email'],
+        'password' => $_POST['password'],
+      );
+
+      $signin = new UserModal;
+      $signin = $signin->getUser($data);
+      print_r($signin);
+
+      if($signin['role'] == 'artiste'){
+        // header('location: homeArtiste');
+        echo 'artiste';
+      }
+      else{
+        echo 'client';
+        // header('location: homeUser');
+      }
     }
-    else{
-      header('location: homeUser');
-    }
-    // return $signin;
   }
 }
 

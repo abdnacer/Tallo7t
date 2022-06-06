@@ -21,10 +21,10 @@
       $stmt = null;
     }
 
-    public function getUser(){
+    public function getUser($data){
       $stmt = DB::connect()->prepare('SELECT * FROM signup WHERE email = ":email" AND password = ":password"');
       $stmt->execute();
-      $stmt->fetchAll();
+      return $stmt->fetchAll();
       $stmt->close();
       $stmt = null;
     }
