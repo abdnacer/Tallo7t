@@ -77,6 +77,7 @@
       </div>
 
       <div class="profile">
+        <i class="bi bi-cart4 fs-4"></i>
         <a href="Profile.html">
           <img src="./Public/Images/imageProfile.png" alt="image profile">
         </a>
