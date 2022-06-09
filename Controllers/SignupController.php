@@ -22,6 +22,7 @@ class SignupController{
           'nationalite' => $_POST['nationalite'],
           'email' => $_POST['email'],
           'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+          'pass' => $_POST['password'],
         );
           $result = new UserModal();
           $result = $result->addUser($data);
@@ -84,24 +85,29 @@ class SignupController{
 
   public function updateUser(){
     if(isset($_POST['update'])){
-      $data = array(
-        'id'            => $_POST['id'],
-        'name_complete' => $_POST['name_complete'],
-        'username'      => $_POST['username'],
-        'phone'         => $_POST['phone'],
-        'nationalite'   => $_POST['nationalite'],
-        'email'         => $_POST['email'],
-        'password'      => $_POST['password'],
-      );
-      die();
-      $updateSetting = new UserModal();
-      $updateSetting = $updateSetting->update($data);
-      
-      if($updateSetting == 'An User data has been Update'){
-        header('location: Profile');
+      if(!empty($_POST['password'])){
+        $data = array(
+          'id'            => $_POST['id'],
+          'name_complete' => $_POST['name_complete'],
+          'username'      => $_POST['username'],
+          'phone'         => $_POST['phone'],
+          'nationalite'   => $_POST['nationalite'],
+          'email'         => $_POST['email'],
+          'password'      => password_hash($_POST['password'], PASSWORD_DEFAULT),
+          'pass'          => $_POST['password'],
+        );
+        $updateSetting = new UserModal();
+        $updateSetting = $updateSetting->update($data);
+        
+        if($updateSetting == 'An User data has been Update'){
+          header('location: Settings');
+        }
+        else{
+          echo $result;
+        }
       }
       else{
-        echo $result;
+        return true;
       }
   }
   }

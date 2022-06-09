@@ -4,30 +4,13 @@
     $dataPost = $dataPost->addPost();
   }
   else{
-    if(){
-
-    }
-    else{
-      header('location: Postuler');
-    }
     $dataAffichePost = new ArtistesController();
     $dataAffichePost = $dataAffichePost->getAllPost();
   }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Artistes</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <!-- Core theme CSS (includes Bootstrap)-->
-  <link rel="stylesheet" href="./Public/Css/bootstrap.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="./Public/Css/style.css">
-</head>
+<?php
+    require_once('Includes/header.php')
+  ?>
 <body class="body-art">
   <section id="menu">
     <div class="logo">
@@ -99,7 +82,7 @@
       <div class="card d-flex mb-3 justify-content-between" style="min-width:270px; max-width:270px; "> 
         <!-- z-index:-1; -->
       <div style="flex-basis: 250px; overflow:hidden">
-          <img class="card-img-top " src="./Public/Images/image_1.png " alt="Card image cap" >
+          <img class="card-img-top " src="./Public/Images/<?= $getPost['image'] ?>" alt="Card image cap" >
       </div> 
       <div class="card-body flex-grow-0">
           <h5 name="title" class="card-title"><?= $getPost['title'] ?></h5>
@@ -128,7 +111,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Write to us</h4>
+        <h4 class="modal-title w-100 font-weight-bold">Creat Product</h4>
         <button type="button" class="btn-close btn-outline-none shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <form method="POST" enctype='multipart/form-data'>
@@ -136,7 +119,7 @@
         <div class="md-form mb-5">
           <i class="bi bi-card-image"></i>
           <label data-error="wrong" data-success="right" for="form34">Images</label>
-          <input type="file" name="image" value="image" id="form34" class="form-control validate shadow-none mt-2">
+          <input type="file" name="image" id="form34" class="form-control validate shadow-none mt-2">
         </div>
 
         <div class="md-form mb-5">
@@ -169,13 +152,6 @@
 
 
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <!-- Bootstrap core JS-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/2e18c067b3.js" crossorigin="anonymous"></script>
-  <!-- <script src="Arsha/assets/js/main.js"></script> -->
-  <script src="../Public/Js/script.js"></script>
-</body>
-</html>
+<?php
+    require_once('Includes/footer.php')
+  ?>

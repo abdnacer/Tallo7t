@@ -11,12 +11,34 @@ class ArtistesController{
 
   public function addPost(){
     if(isset($_POST['addPost'])){
+      
       $data = array(
-        'image' => $_POST['image'],
+        'image' => $_FILES['image']['name'],
+        // 'image' => $_POST['image'],
         'title' => $_POST['title'],
         'price' => $_POST['price'],
         'description' => $_POST['description'],
       );
+      // var_dump[$data];
+
+
+
+      // if(isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK){
+      //   $info->getimagesize($_FILES['image']['tmp_name']);
+      //   $allowedTypes = [IMAGETYPE_JPEG => '.jpg',IMAGETYPE_PNG => '.png'];
+      //   if($info === false){
+      //     header('location: Postuler'); 
+      //   }
+      //   else if(!array_key_exists($info[2],$allowedTypes)){
+      //     header('location: Postuler');
+      //   }
+      //   else{
+      //     $path = getcwd().DIRECTORY_SEPARATOR. 'image' .DIRECTORY_SEPARATOR;
+      //     $filename = uniqid().$allowedTypes[$info[2]];
+      //     move_upload_file($_FILES['image']['tmp_name'], $path.$filename);
+      //   }
+      // } 
+
 
       $result = new Artistes();
       $result = $result->addPostModal($data);
@@ -34,8 +56,4 @@ class ArtistesController{
     $post = $post->getAllPost();
     return $post;
   }
-
-  // public function addPicture(){
-    
-  // }
 }

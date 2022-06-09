@@ -9,8 +9,8 @@
     }
 
     public function addUser($data){
-      $stmt = DB::connect()->prepare('INSERT INTO signup (name_complete, username, role, phone, nationalite, email, password) 
-      VALUES (:name_complete, :username, :role, :phone, :nationalite, :email, :password)');
+      $stmt = DB::connect()->prepare('INSERT INTO signup (name_complete, username, role, phone, nationalite, email, password, pass) 
+      VALUES (:name_complete, :username, :role, :phone, :nationalite, :email, :password, :pass)');
       $stmt->bindParam(':name_complete', $data['name_complete']);
       $stmt->bindParam(':username', $data['username']);
       $stmt->bindParam(':role', $data['role']);
@@ -18,6 +18,7 @@
       $stmt->bindParam(':nationalite', $data['nationalite']);
       $stmt->bindParam(':email', $data['email']);
       $stmt->bindParam(':password', $data['password']);
+      $stmt->bindParam(':pass', $data['pass']);
 
       if($stmt->execute()){
         return 'User is created successfully';
@@ -56,8 +57,10 @@
         phone = :phone, 
         nationalite = :nationalite,
         email = :email, 
-        password = :password 
-        WHERE id = :id');
+        password = :password,
+        pass = :pass
+        WHERE id = :id'
+        );
 
       $stmt->bindParam(':name_complete', $data['name_complete']);
       $stmt->bindParam(':username',      $data['username']);
@@ -65,8 +68,9 @@
       $stmt->bindParam(':nationalite',   $data['nationalite']);
       $stmt->bindParam(':email',         $data['email']);
       $stmt->bindParam(':password',      $data['password']);
+      $stmt->bindParam(':pass',          $data['pass']);
       $stmt->bindParam(':id',            $data['id']);
-      
+
       if($stmt->execute()){
         return 'An User data has been Update';
       }
