@@ -12,7 +12,7 @@
     
 </head>
 <body>
-    <a href="home.php" class="btn btn-dark ms-5 mt-3 shadow-none">Back</a>
+    <a href="logout" class="btn btn-dark ms-5 mt-3 shadow-none">Back</a>
     <div class="d-flex justify-content-center align-items-center">
         <img src="./Public/Images/animation_500_l3e6pik3.gif" alt="Error">
     </div>

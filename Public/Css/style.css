@@ -335,7 +335,12 @@
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
-section {
+/* section */
+#home,
+#about,
+#products,
+#contact
+ {
   padding: 60px 0;
   /* overflow: hidden; */
 }
@@ -349,4 +354,347 @@ section {
   .img_respo img{
     display: none;
   }
+}
+
+/* Sidebar de page dashboard Artistes */
+.body-art{
+  width: 100%;
+  background-color: #E5E7EB;
+  position: relative;
+  display: flex;
+}
+
+#menu{
+  background: #f8f9fa;
+  width: 300px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#menu .logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  padding-top: 30px;
+}
+
+#menu .logo img{
+  width: 100px;
+  /* margin-right: 40px; */
+}
+
+#menu .items{
+  margin-top: 40px;
+}
+
+#menu .items li{
+  list-style: none;
+  padding: 15px 0;
+  transition: 0.3s ease;
+}
+
+
+#menu .items li:hover{
+  background-color: #ffffff88;
+  cursor: pointer;
+}
+
+#menu .items li:nth-child(1){
+  border-left: 4px solid black;
+}
+
+#menu .items li i{
+  color: rgb(143, 141, 151);
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 14px;
+  margin: 0 10px 0 25px;
+}
+#menu .items li:hover i,
+#menu .items li:hover a{
+  color: black;
+}
+
+#menu .items li a{
+  text-decoration: none;
+  color: rgb(143, 141, 151);
+  font-weight: 200px;
+  transition: 0.3s ease;
+}
+
+/* Nav Bar de dashboard Artistes */
+#interface{
+  width: calc(100% - 300px);
+  margin-left: 300px;
+  position: relative;
+}
+
+#interface .navigation{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 15px 30px;
+  border-bottom: 3px solid #F3F0D7;
+  position: fixed;
+  width: calc(100% - 300px);
+}
+
+#interface .navigation .search{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid #d7dbe6;
+  border-radius: 4px;
+}
+
+#interface .navigation .search i{
+  margin-right: 14px;
+}
+
+#interface .navigation .search input{
+   border: none;
+   outline: none;
+   font-size: 14px;
+}
+
+#interface .navigation .profile{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#interface .navigation .profile i{
+  margin-right: 20px;
+  font-style: 19px;
+  font-weight: 400;
+}
+
+#interface .navigation .profile img{
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.n1{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#menu-btn{
+  display: none;
+  color: #2b2b2b;
+  font-size: 25px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.i-name {
+  color: #444a53;
+  padding: 30px 30px 0 30px;
+  font-size: 27px;
+  font-weight: 700;
+  margin-top: 70px ;
+}
+
+.btno button{
+  margin-top: 70px;
+}
+
+/* Table responsive */
+.board{
+  width: 96%;
+  margin: 30px 0 30px 30px;
+  overflow: auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+}
+
+.board p{
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.board .number{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: start;
+}
+
+.table-art{
+  border-collapse: collapse;
+}
+
+.table-art tr{
+  border: 1px solid #eef0f3;
+}
+
+.table-art thead td{
+  font-size: 14px;
+  text-transform: capitalize;
+  font-weight: 400;
+  background: #F9FAFB;
+  text-align: start;
+  padding: 15px;
+}
+
+.table-art tbody tr td{
+  padding: 10px 15px;
+}
+
+.edit a{
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #554cd1;
+}
+
+@media (max-width: 769px){
+  #menu{
+    width: 270px;
+    position: fixed;
+    left: -270px;
+    transition: 0.3s ease;
+  }
+
+  #menu-btn{
+    display: initial;
+  }
+
+  #menu.active{
+    left: 0;
+  }
+
+  #interface{
+    width: 100%;
+    margin-left: 0;
+    display: inline-block;
+    transition: 0.3s ease;
+  }
+
+  #menu.active~ #interface{
+    width: calc(100% - 270px);
+    margin-left: 270px;
+    transition: 0.3s ease;
+  }
+
+  #interface .navigation {
+    width: 100%;
+  }
+
+  .board{
+    width: 92%;
+    padding: 0;
+    overflow-x: auto;
+  }
+
+  .table-art{
+    width: 100%;
+    border-collapse: collapse;
+  }
+}
+
+@media (max-width: 447px) {
+  #interface .navigation{
+    padding: 15px;
+  }
+
+  #interface .navigation .search input {
+    width: 150px;
+  }
+
+  .i-name {
+    padding: 30px 15px 0 15px;
+  }
+
+  .board{   
+    margin: 30px 15px 30px 15px;
+  }
+}
+
+.profil-art{
+  background-color: #F5F5F5;
+}
+
+.shadow{
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06) !important;
+}
+
+.main-content{
+  padding: 60px 0;
+}
+
+.text-left{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.banner{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 125px;
+  background-image: url(../Images/covertureProfil.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.img-circle{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  z-index: 1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+.social-links a{ 
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.social-links a img{
+  height: 40px;
+}
+
+.social-links a:hover{
+  transform: translateY(-3px);
+}
+
+.icon-profil{
+  text-decoration: none;
+}
+
+.icon-profil .edit{
+  display: flex;
+  font-size: 20px;
+  justify-content: end;
+  transform: translateY(70px);
+  margin-right: 12px;
+  color: #fcfcfc;
+}
+
+.icon-rout-profil{
+  text-decoration: none;
+}
+
+.icon-rout-profil .back{
+  display: flex;
+  font-size: 20px;
+  justify-content: flex-start;
+  transform: translateY(90px);
+  margin-left: 10px;
+  color: #fcfcfc;
 }

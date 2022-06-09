@@ -2,6 +2,8 @@
   if(isset($_POST['submit'])){
     $data = new SignupController();
     $data = $data->signup();
+    $message = ($data == false) ? "email déja existe" : "";
+    $messagepassword = ($data == true) ? "password not Matched" : "";
   } 
 ?>
 <!DOCTYPE html>
@@ -19,10 +21,6 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
   <link rel="stylesheet" href="./Public/Css/style.css">
 </head>
-
-<body>
-  <!-- Section: Design Block -->
-  <section class="d-flex align-items-center text-lg-start p-2">
     <style>
       .cascading-right {
         margin-right: -50px;
@@ -34,6 +32,9 @@
         }
       }
     </style>
+<body>
+  <!-- Section: Design Block -->
+  <section class="d-flex align-items-center text-lg-start p-2">
 
     <!-- Jumbotron -->
     <div class="container">
@@ -72,22 +73,45 @@
                   </select>
                 </div>
 
+                <!-- 2 column ++grid layout with text inputs for the first and last names -->
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                    <label class="form-label" for="form3Example3">Phone</label>
+                    <input type="text" name="phone" id="form3Example3" class="form-control shadow-none" />
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                    <label class="form-label" for="form3Example3">Nationalité</label>
+                    <input type="text" name= "nationalite" id="form3Example3" class="form-control shadow-none" />
+                    </div>
+                  </div>
+                </div>
+                
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                   <label class="form-label" for="form3Example3">Email</label>
                   <input type="email" name="email" id="form3Example3" class="form-control shadow-none" />
+                  <div class="text-danger"><?php if(isset($message)) echo $message ?></div>
                 </div>
 
-                <!-- Password input -->
-                <div class="form-outline mb-4">
-                  <label class="form-label " for="form3Example1">Password</label>
-                  <input type="password" name="password" id="form3Example1" class="form-control shadow-none" />
-                </div>
-
-                <!-- Conferme Password input -->
-                <div class="form-outline mb-4">
-                  <label class="form-label " for="form3Example1">Conferme Password</label>
+                <!-- 2 column grid layout with text inputs for the first and last names -->
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <label class="form-label " for="form3Example1">Password</label>
+                      <input type="password" name="password" id="form3Example1" class="form-control shadow-none" />
+                      <div class="text-danger"><?php if(isset($messagepassword)) echo $messagepassword ?></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="form-outline">
+                      <label class="form-label " for="form3Example1">Conferme Password</label>
                   <input type="password" name="conferme_password" id="form3Example1" class="form-control shadow-none" />
+                  <div class="text-danger"><?php if(isset($messagepassword)) echo $messagepassword ?></div>
+                    </div>
+                  </div>
                 </div>
 
                 <!-- Submit button -->

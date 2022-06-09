@@ -1,8 +1,9 @@
 <?php
-if(isset($_POST['submit'])){
-  $data = new SignupController();
-  $data->signin();
-}
+  if(isset($_POST['submit'])){
+    $data = new SignupController();
+    $data = $data->signin();
+    $message = ($data == false) ? "email or password not correct" : "";
+  }
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +22,7 @@ if(isset($_POST['submit'])){
 </head>
 <body>
   <section class="h-100" style="background-color: #fcfcfc;">
-    <div class="container h-100 p-1">
+    <div class="container h-100 p-5">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-xl-9">
           <div class="card" style="border-radius: 1rem; border: none; box-shadow: 2px 2px 13px 0 rgba(0,0,0,.1)">
@@ -44,11 +45,13 @@ if(isset($_POST['submit'])){
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form2Example17">Email</label>
                       <input type="email" name="email" id="form2Example17" class="form-control form-control-lg shadow-none" />
+                      <div class="text-danger"><?php if(isset($message)) echo $message ?></div>
                     </div>
   
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form2Example27">Password</label>
                       <input type="password" name="password" id="form2Example27" class="form-control form-control-lg shadow-none" />
+                      <div class="text-danger"><?php if(isset($message)) echo $message ?></div>
                     </div>
   
                     <div class="pt-1 mb-4">
