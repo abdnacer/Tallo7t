@@ -1,7 +1,12 @@
 <?php
+  $datainfo = $_SESSION['id']; 
   $dataArtistes = new ArtistesController();
-  $data = $dataArtistes->getAllArtistes();
-  $datainfo['id'] = $_SESSION['id'];
+  $data = $dataArtistes->getAllArtistes($datainfo);
+
+  if(isset($_POST['id'])){
+    $exiteOrder = new ArtistesController();
+    $exiteOrder->deleteOrder();
+  }
 ?>
 
 <?php
@@ -42,50 +47,46 @@
         
         <?php 
         $id = 0;
-        foreach($data as $dataArtistes): 
-        $id += 1;?>
+        foreach($data as $dataArt):
+        $id += 1;
+        ?>
         <tr>
           <td class="number">
             <p><?= $id ;?></p>
           </td>
 
-          <td class="name">
-            <p><?= $dataArtistes['name_complet']?></p>
+          <td class="name name-row">
+            <p><?= $dataArt['name_complet'] ?></p>
           </td>
 
           <td class="cin">
-            <p><?= $dataArtistes['cin']?></p>
+            <p><?= $dataArt['cin']?></p>
           </td>
 
           <td class="ville">
-            <p><?= $dataArtistes['ville']?></p>
+            <p><?= $dataArt['ville']?></p>
           </td>
 
           <td class="address">
-            <p><?= $dataArtistes['address']?></p>
+            <p><?= $dataArt['address']?></p>
           </td>
 
           <td class="postale">
-            <p><?= $dataArtistes['code_postale']?></p>
+            <p><?= $dataArt['code_postale']?></p>
           </td>
 
           <td class="phone">
-            <p><?= $dataArtistes['phone']?></p>
+            <p><?= $dataArt['phone']?></p>
           </td>
 
           <td class="phone">
-            <p><?= $dataArtistes['date_order']?></p>
+            <p><?= $dataArt['date_order']?></p>
           </td>
 
           <td class="edit">
-            <p>
-              <a href="">
-                <i class="fa-solid fa-pen-to-square fs-4 me-2 text-secondary"></i>
-              </a>
-              <a href="">
-                <i class="fa-solid fa-trash-can fs-4 text-secondary"></i>
-              </a>
-            </p>
+          <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="border-0 bg-white p-0 fs-4">
+            <i class="bi bi-trash-fill ms-3"></i>
+          </button>
           </td>
         </tr>
         <?php endforeach ?>
@@ -94,6 +95,30 @@
     </table>
     </div>
   </section>
+
+  <!-- Modal DELETE-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Order</h5>
+        <button type="button" class="btn-close btn-outline-none shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        You Are Sure To Delete
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form method="POST">
+          <input type="hidden" name="id" value="<?php echo $dataArt['id'];?>">
+          <button type="submit" class="border-0 btn btn-dark">
+            Delete
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 
   <?php

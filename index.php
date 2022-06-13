@@ -12,10 +12,14 @@ require_once './controllers/homeController.php';
    'dashboardArtistes',
    'Profile',
    'Settings',
-   'homeUser',
    'logout',
    'dashboardAdmin',
-   'Postuler',];
+   'Postuler',
+   'homeUser',
+   'addOrder',
+   'editePost',
+   'SettingClient'];
+
    
       if(isset($_GET['page'])){
          if(in_array($_GET['page'],$pages)){

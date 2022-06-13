@@ -1,17 +1,13 @@
 <?php
-$datainfo = $_SESSION['id'];
-
-  if(isset($datainfo)){
-    $data = new SignupController();
-    $data = $data->getInfoSetting($datainfo);
-  } 
+  if(isset($_POST['id'])){
+    $getPost = new ArtistesController();
+    $getPost = $getPost->getOnePost();
+  }
 
   if(isset($_POST['update'])){
-    $retourData = new SignupController();
-    $retourData = $retourData->updateUser();
-    $message = ($data == true) ? "password Not change" : "";
+    $post = new ArtistesController();
+    $post->updatePost();
   }
-  
 ?>
 <?php
     require_once('Includes/header.php')
@@ -31,62 +27,39 @@ $datainfo = $_SESSION['id'];
     </h3>
 
     <form method='POST' class="mx-5 my-4" id="form">
-      <!-- Text input -->
+      <!-- Image input -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form6Example3">Image</label>
-        <input type="file" name="avatar" id="form6Example3" class="form-control shadow-none phone" />
+        <input type="file" name="image" id="form6Example3" value="<?= $getPost['image'] ?>" class="form-control shadow-none phone" />
         <div class="errorPhone text-danger"></div>
       </div>
-      <!-- 2 column grid layout with text inputs for the first and last names -->
-      <div class="row mb-4">
-        <div class="col">
-          <div class="form-outline">
-            <label class="form-label" for="form6Example1">Name Complete</label>
-            <input type="text" name="name_complete" id="form6Example1" value="<?= $data['name_complete'];?>" class="form-control shadow-none name_complete" />
-            <div class="errorName text-danger"></div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="form-outline">
-            <label class="form-label" for="form6Example2">Username</label>
-            <input type="text" name="username" id="form6Example2" value="<?= $data['username'];?>" class="form-control shadow-none username" />
-            <div class="errorUsername text-danger"></div>
-          </div>
-        </div>
+
+      <!-- Text input -->
+      <div class="form-outline">
+        <label class="form-label" for="form6Example1">Title</label>
+        <input type="text" name="title" id="form6Example1" value="<?= $getPost['title'] ?>" class="form-control shadow-none title" />
+        <div class="errorName text-danger"></div>
+      </div>
+
+
+      <div class="form-outline">
+        <label class="form-label" for="form6Example2">Price</label>
+        <input type="text" name="price" id="form6Example2" value="<?= $getPost['price'] ?>" class="form-control shadow-none price" />
+        <div class="errorUsername text-danger"></div>
       </div>
     
       <!-- Text input -->
       <div class="form-outline mb-4">
-        <label class="form-label" for="form6Example3">Phone</label>
-        <input type="text" name="phone" id="form6Example3" value="<?= $data['phone'];?>" class="form-control shadow-none phone" />
+        <label class="form-label" for="form6Example3">Description</label>
+        <input type="text" name="description" id="form6Example3" value="<?= $getPost['description'] ?>" class="form-control shadow-none description" />
         <div class="errorPhone text-danger"></div>
       </div>
     
-      <!-- Text input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="form6Example4">Nationalite</label>
-        <input type="text" name="nationalite" id="form6Example4" value="<?= $data['nationalite'];?>" class="form-control shadow-none nationalite" />
-        <div class="errorNationalite text-danger"></div>
-      </div>
-    
-      <!-- Email input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="form6Example5">Email</label>
-        <input type="email" name="email" id="form6Example5" value="<?= $data['email'];?>" class="form-control shadow-none email" />
-        <div class="errorEmail text-danger"></div>
-      </div>
-    
-      <!-- Number input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="form6Example6">Password</label>
-        <input type="text" name="password" id="form6Example6" value="<?php if(isset($data['pass'])) echo  $data['pass'] ?? "";?>" class="form-control shadow-none password" />
-        <div class="errorPassword text-danger"></div>
-        <div class="text-danger"><?php if(isset($message)) echo $message ?></div>
-      </div>
+      
     
       <!-- Submit button -->
       <form method="POST">
-        <input type="hidden" name="id" value="<?= $data['id'];?>">
+        <input type="hidden" name="id" value="<?= $getPost['id'];?>">
         <button type="submit" name="update" class="btn btn-dark btn-block mb-4 shadow-none">Update</button>
       </form>
     </form>  

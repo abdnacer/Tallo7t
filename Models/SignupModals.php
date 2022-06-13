@@ -3,7 +3,7 @@
   class UserModal{
     public function verfyEmail($email){
       $stmt = DB::connect()->prepare('SELECT * FROM signup WHERE email = :email');
-      $stmt->bindParam(':email', $email['email'] );
+      $stmt->bindParam(':email', $email['email']);
       $stmt->execute();
       return $stmt->fetch(PDO::FETCH_ASSOC);
     }
@@ -41,13 +41,13 @@
     }
 
     public function getinfo($data){
-      $id = $data['id'];
+      // $id = $data['id'];
       $stmt = DB::connect()->prepare('SELECT * FROM `signup` WHERE id = :id');
       $stmt->bindParam(':id', $data['id']);
       $stmt->execute();
       $get = $stmt->fetch(PDO::FETCH_ASSOC);
-      $stmt = null;
       return $get;
+      $stmt = null;
     }
 
     public function update($data){

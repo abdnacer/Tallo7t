@@ -1,84 +1,42 @@
 <?php
-  if(isset($_POST['addPost'])){
+  $datainfo = $_SESSION['id'];
+  if(isset($_POST['submit'])){
     $dataPost = new ArtistesController();
-    $dataPost = $dataPost->addPost();
+    $dataPost = $dataPost->addPost($datainfo);
   }
-  else{
+  else if(isset($datainfo)){
     $dataAffichePost = new ArtistesController();
-    $dataAffichePost = $dataAffichePost->getAllPost();
+    $dataAffichePost = $dataAffichePost->getAllPost($datainfo);
   }
 ?>
-<?php
+
+  <?php
     require_once('Includes/header.php')
   ?>
-<body class="body-art">
-  <section id="menu">
-    <div class="logo">
-      <img class="" src="./Public/Assets/logo.png" alt="LOGO">
-    </div>
-
-    <div class="items">
-      <li>
-        <a href="dashboardArtistes">
-          <i class="fa-solid fa-chart-line">
-          </i>Dashboard</a>
-      </li>
-      <li>
-        <a href="Postuler">
-          <i class="fa-solid fa-signs-post">
-          </i>Poste</a>
-      </li>
-      <li>
-        <a href="Profile">
-        <i class="fa-solid fa-user">
-        </i>Profile</a>
-      </li>
-      <li>
-        <a href="Settings">
-        <i class="fa-solid fa-gear">
-        </i>Settings</a>
-      </li>
-      <li>
-        <a href="logout">
-        <i class="fa-solid fa-arrow-right-from-bracket">
-        </i>Se Deconnecter</a>
-      </li>
-    </div>
-  </section>
+  <body class="body-art">
+  <?php
+    require_once('Includes/sidebar.php')
+  ?>
 
   <section id="interface">
-    <div class="navigation">
-    <!-- style="z-index:99;" -->
-      <div class="n1">
-        <div>
-          <i id="menu-btn" class="fa-solid fa-bars"></i>
-        </div>
-        <div class="search">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="text" placeholder="Search">
-        </div>
-      </div>
-
-      <div class="profile">
-        <i class="bi bi-cart4 fs-4"></i>
-        <a href="Profile.html">
-          <img src="./Public/Images/imageProfile.png" alt="image profile">
-        </a>
-      </div>
-    </div>
+    <?php
+      require_once('Includes/navbar.php')
+    ?>
 
     <div class="d-flex justify-content-between align-items-center">
       <h3 class="i-name">
         Dashboard Artiste
       </h3>
       <div class="btno me-4 mt-4">
-          <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-dark px-4 rounded-3 shadow-none">Add</button>
+          <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-dark px-4 rounded-3 shadow-none">
+            Add
+          </button>
       </div>
     </div>
 
 
     <div class="container-fuild card-group d-flex align-items-center flex-wrap gap-3 ms-4 mt-5 ">
-      <?php foreach($dataAffichePost as $getPost):?>
+      <?php foreach($dataAffichePost as $getPost): ?>
       <div class="card d-flex mb-3 justify-content-between" style="min-width:270px; max-width:270px; "> 
         <!-- z-index:-1; -->
       <div style="flex-basis: 250px; overflow:hidden">
@@ -93,7 +51,13 @@
           <a href="" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               <i class="bi bi-three-dots-vertical"></i></a>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="editCourse.php?edit=<?php echo $getPost['id']; ?>">Edit</a></li>
+            <form action="editePost" method="POST">
+                <input type="hidden" name="id" value="<?= $getPost['id']; ?>">
+              <!-- <li> -->
+                <button class="dropdown-item">Edit</button>
+              <!-- </li> -->
+            </form>
+              <!-- <li><a class="dropdown-item" href="editCourse.php?edit=<?php echo $getPost['id']; ?>">Edit</a></li> -->
               <li><a class="dropdown-item" href="deleteCourse.php?delete=<?php echo $getPost['id']; ?>"">Delete</a></li>
           </ul>
           </div>
@@ -114,7 +78,7 @@
         <h4 class="modal-title w-100 font-weight-bold">Creat Product</h4>
         <button type="button" class="btn-close btn-outline-none shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="POST" enctype='multipart/form-data'>
+      <form method="POST">
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <i class="bi bi-card-image"></i>
@@ -142,7 +106,7 @@
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button type="submit" name="addPost" class="btn btn-dark px-4 shadow-none">Send</button>
+        <button type="submit" name="submit" class="btn btn-dark px-4 shadow-none">Send</button>
       </div>
     </form>
     </div>

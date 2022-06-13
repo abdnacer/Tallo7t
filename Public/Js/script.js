@@ -28,3 +28,19 @@ $('#menu-btn').click(function(){
 // menu_btn.onclick = function(){
 //   menu.classList.toggle("active")
 // }
+
+// Partie  Code de Recherche
+let search = document.getElementById('search')
+
+search.addEventListener('input', function() {
+    let value = this.value.toUpperCase()
+    let columns = [...document.querySelectorAll('.name-row')]
+
+    columns.forEach(column => {
+        if(!column.textContent.toUpperCase().startsWith(value)) {
+            column.parentElement.style.display = 'none';
+        } else {
+            column.parentElement.style.display = 'table-row';
+        }
+    })    
+})

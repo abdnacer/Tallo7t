@@ -1,45 +1,35 @@
 <?php
 
-include('./Modals/Artistes.php');
+include('./Models/Artistes.php');
 
 class ArtistesController{
-  public function getAllArtistes(){
+  public function getAllArtistes($datainfo){
+    $data = array(
+      'id' => $datainfo
+    );
     $artistes = new Artistes();
-    $artiste = $artistes->getAll();
+    $artiste = $artistes->getAll($data);
     return $artiste;
   }
 
-  public function addPost(){
-    if(isset($_POST['addPost'])){
-      
+  public function getCountOrder($dataId){
+    $data = array(
+      'id' => $dataId
+    );
+    $artistes = new Artistes();
+    $artiste = $artistes->getCountOrder($data);
+    return $artiste;
+  }
+
+  public function addPost($datainfo){
+    if(isset($_POST['submit'])){
       $data = array(
-        'image' => $_FILES['image']['name'],
-        // 'image' => $_POST['image'],
-        'title' => $_POST['title'],
-        'price' => $_POST['price'],
-        'description' => $_POST['description'],
+        'id_user'     => $datainfo,
+        'title'       => $_POST['title'],
+        'image'       => $_POST['image'],
+        'price'       => $_POST['price'],
+        'description' => $_POST['description']
       );
-      // var_dump[$data];
-
-
-
-      // if(isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK){
-      //   $info->getimagesize($_FILES['image']['tmp_name']);
-      //   $allowedTypes = [IMAGETYPE_JPEG => '.jpg',IMAGETYPE_PNG => '.png'];
-      //   if($info === false){
-      //     header('location: Postuler'); 
-      //   }
-      //   else if(!array_key_exists($info[2],$allowedTypes)){
-      //     header('location: Postuler');
-      //   }
-      //   else{
-      //     $path = getcwd().DIRECTORY_SEPARATOR. 'image' .DIRECTORY_SEPARATOR;
-      //     $filename = uniqid().$allowedTypes[$info[2]];
-      //     move_upload_file($_FILES['image']['tmp_name'], $path.$filename);
-      //   }
-      // } 
-
-
       $result = new Artistes();
       $result = $result->addPostModal($data);
       if($result == 'An Post has been created in the list'){
@@ -51,9 +41,62 @@ class ArtistesController{
     }
   }
 
-  public function getAllPost(){
+  public function getAllPost($datainfo){
+    $data = array(
+      'id' => $datainfo
+    );
     $post = new Artistes();
-    $post = $post->getAllPost();
+    $post = $post->getAllPost($data);
     return $post;
   }
+
+  public function deleteOrder(){
+    if(isset($_POST['id'])){
+      $data = array(
+        'id' => $_POST['id']
+      );
+      $result = new Artistes();
+      $result = $result->deleteOrder($data);
+      if($result == 'An Order has been Delete in the list'){
+        header('location: dashboardArtistes');
+      }
+      else{
+        echo $result;
+      }
+    }
+  }
+
+  public function getOnePost(){
+    if(isset($_POST['id'])){
+      $data = array(
+        'id' => $_POST['id']
+      );
+
+      $dataPost = new Artistes();
+      $dataPost = $dataPost->getOnePost($data);
+      return $dataPost;
+    }
+  }
+
+  public function updatePost(){
+    if(isset($_POST['update'])){
+      $data = array(
+        'id'          => $_POST['id'],
+        'image'       => $_POST['image'],
+        'title'       => $_POST['title'],
+        'price'       => $_POST['price'],
+        'description' => $_POST['description'],
+      );
+
+      $postUpdate = new Artistes();
+      $postUpdate = $postUpdate->updatePost($data);
+      if($postUpdate == 'An Post data has been Update'){
+        header('location: Postuler');
+      }
+      else{
+        echo $postUpdate;
+      }
+    }
+  }
+
 }

@@ -1,4 +1,18 @@
-<?php
+  <?php
+   $datainfo = $_SESSION['id'];
+   if(isset($datainfo)){
+     $dataProfile = new SignupController();
+     $dataProfile = $dataProfile->getInfoSetting($datainfo);
+   }
+
+  //  if(isset($datainfo)){
+  //    $data = new SignupController();
+  //    $data = $data->getImage($datainfo);
+  //  }
+
+   
+  ?>
+  <?php
     require_once('Includes/header.php')
   ?>
 
@@ -14,17 +28,17 @@
           <div class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center">
             <div class="banner">
             </div>
-            <img src="./Public/Images/imageProfile.png" alt="" class="img-circle mx-auto mb-3">
-            <h3 class="mb-4 text-uppercase"><?= $_SESSION['username']?></h3>
+            <img src="./Public/image_user/avatar.png" alt="" class="img-circle mx-auto mb-3 bg-dark">
+            <h3 class="mb-4 text-uppercase"><?= $dataProfile['username']?></h3>
             <div class="text-left mb-4">
               <p class="mb-2">
-                <i class="fa fa-envelope me-3 fs-5"></i><?= $_SESSION['email']?>
+                <i class="fa fa-envelope me-3 fs-5"></i><?= $dataProfile['email']?>
               </p>
               <p class="mb-2">
-                <i class="fa fa-phone me-3 fs-5"></i><?php echo $_SESSION['phone']?>
+                <i class="fa fa-phone me-3 fs-5"></i><?= $dataProfile['phone']?>
               </p>
               <p class="mb-2">
-                <i class="fa fa-map-marker-alt me-3 fs-5"></i><?php echo $_SESSION['nationalite']?>
+                <i class="fa fa-map-marker-alt me-3 fs-5"></i><?= $dataProfile['nationalite']?>
               </p>
             </div>
 

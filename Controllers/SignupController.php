@@ -1,5 +1,5 @@
 <?php
-require('./Modals/SignupModals.php');
+require('./Models/SignupModals.php');
 
 class SignupController{
   public function signup(){
@@ -49,12 +49,12 @@ class SignupController{
       );
       $signin = new UserModal;
       $signin = $signin->getUser($data);
-      if(password_verify($_POST['password'], $signin['password'])==true){
+      if(password_verify($_POST['password'], $signin['password']) == true){
         $_SESSION['id'] = $signin['id'];
-        $_SESSION['username'] = $signin['username'];
-        $_SESSION['email'] = $signin['email'];
-        $_SESSION['phone'] = $signin['phone'];
-        $_SESSION['nationalite'] = $signin['nationalite'];
+        // $_SESSION['username'] = $signin['username'];
+        // $_SESSION['email'] = $signin['email'];
+        // $_SESSION['phone'] = $signin['phone'];
+        // $_SESSION['nationalite'] = $signin['nationalite'];
         if($signin['role'] == 'artiste'){
           header('location: dashboardArtistes');
         }
@@ -111,6 +111,10 @@ class SignupController{
       }
   }
   }
+
+  // public function getImage(){
+  //   // 
+  // }
 }
 
 ?>

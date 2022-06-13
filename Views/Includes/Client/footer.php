@@ -6,10 +6,10 @@
   <!-- <script src="Arsha/assets/js/main.js"></script> -->
   <script src="./Public/Js/script.js"></script>
   <!-- <script src="./Public/Js/jquery.min.js"></script>
-  <script src="./Public/Js/royal_preloader.min.js"></script>
+  <script src="./Public/Js/royal_preloader.min.js"></script> -->
 
 
-  <script>
+  <!-- <script>
         window.jQuery = window.$ = jQuery;
         (function($) { "use strict";
             //Preloader

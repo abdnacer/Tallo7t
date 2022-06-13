@@ -8,7 +8,7 @@
     $array_paths = array(
         'DataBase/',
         'App/',
-        'Modals/',
+        'Models/',
         'Controllers/'
     );
 
