@@ -12,13 +12,15 @@ class Artistes{
   }
 
   public function addPostModal($data){
-    $stmt = DB::connect()->prepare('INSERT INTO post (id_user, image, title, price, description) 
-    VALUES (:id_user, :image, :title, :price, :description)');
+    $status = 0;
+    $stmt = DB::connect()->prepare('INSERT INTO post (id_user, image, title, price, description, status) 
+    VALUES (:id_user, :image, :title, :price, :description, :status)');
     $stmt->bindParam(':id_user',     $data['id_user']);
     $stmt->bindParam(':image',       $data['image']); 
     $stmt->bindParam(':title',       $data['title']);
     $stmt->bindParam(':price',       $data['price']);
     $stmt->bindParam(':description', $data['description']);
+    $stmt->bindParam(':status',      $status);
     
     if($stmt->execute()){
       return 'An Post has been created in the list';

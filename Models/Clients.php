@@ -12,7 +12,7 @@
 
     public function addOrder($data){
       $status = 1;
-      $statusPost = $this->status($status);
+      $statusPost = $this->status($status, $data);
       $stmt = DB::connect()->prepare('INSERT INTO `order` (id_user, name_complet, cin, ville, address, code_postale, phone) 
       VALUES (:id_user, :name_complet, :cin, :ville, :address, :code_postale, :phone)');
       $stmt->bindParam(':id_user', $data['id']);
@@ -33,11 +33,15 @@
       $stmt = null;
     }
 
-    public function status($status){
+    public function status($status, $data){
       $stmt = DB::connect()->prepare('UPDATE `post` SET status = :status WHERE id = :id_Post');
       $stmt->bindParam(':status', $status);
       $stmt->bindParam(':id_Post', $data['id_Post']);
-      $stmt->execute();
+      if($stmt->execute()) {
+        return true;
+      }
+
+      return false;
     }
 
     public function getinfo($data){
@@ -46,6 +50,37 @@
       $stmt->execute();
       $get = $stmt->fetch(PDO::FETCH_ASSOC);
       return $get;
+      $stmt = null;
+    }
+
+    public function update($data){
+      $stmt = DB::connect()->prepare('UPDATE `signup` SET 
+        name_complete = :name_complete, 
+        username = :username, 
+        phone = :phone, 
+        nationalite = :nationalite,
+        email = :email, 
+        password = :password,
+        pass = :pass
+        WHERE id = :id'
+        );
+
+      $stmt->bindParam(':name_complete', $data['name_complete']);
+      $stmt->bindParam(':username',      $data['username']);
+      $stmt->bindParam(':phone',         $data['phone']);
+      $stmt->bindParam(':nationalite',   $data['nationalite']);
+      $stmt->bindParam(':email',         $data['email']);
+      $stmt->bindParam(':password',      $data['password']);
+      $stmt->bindParam(':pass',          $data['pass']);
+      $stmt->bindParam(':id',            $data['id']);
+
+      if($stmt->execute()){
+        return 'An User data has been Update';
+      }
+      else{
+        return 'No data User was Update';
+      }
+      $stmt->close();
       $stmt = null;
     }
 

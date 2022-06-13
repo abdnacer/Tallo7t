@@ -1,7 +1,8 @@
 <?php 
-  $dataArtistes = new adminController();
-  $dataArtistes = $dataArtistes->getArtistes();
+  $dataClient = new adminController();
+  $dataClient = $dataClient->getClient();
 ?>
+
 <?php
   require_once('Includes/header.php')
 ?>
@@ -39,7 +40,7 @@
         
         <?php 
         $id = 0;
-        foreach($dataArtistes as $dataArt):
+        foreach($dataClient as $dataCl):
         $id += 1;
         ?>
         <tr>
@@ -48,27 +49,27 @@
           </td>
 
           <td class="name_complete name-row">
-            <p><?= $dataArt['name_complete'] ?></p>
+            <p><?= $dataCl['name_complete'] ?></p>
           </td>
 
           <td class="username">
-            <p><?= $dataArt['username'] ?></p>
+            <p><?= $dataCl['username'] ?></p>
           </td>
 
           <td class="phone">
-            <p><?= $dataArt['phone'] ?></p>
+            <p><?= $dataCl['phone'] ?></p>
           </td>
 
           <td class="nationalite">
-            <p><?= $dataArt['nationalite'] ?></p>
+            <p><?= $dataCl['nationalite'] ?></p>
           </td>
 
           <td class="email">
-            <p><?= $dataArt['email'] ?></p>
+            <p><?= $dataCl['email'] ?></p>
           </td>
 
           <td class="date">
-            <p><?= $dataArt['date'] ?></p>
+            <p><?= $dataCl['date'] ?></p>
           </td>
 
           <td class="edit">

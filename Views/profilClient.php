@@ -1,21 +1,36 @@
+<?php
+  $datainfo = $_SESSION['id'];
+  if(isset($datainfo)){
+    $dataProfile = new SignupController();
+    $dataProfile = $dataProfile->getInfoSetting($datainfo);
+  }
+?>
   <?php
-   $datainfo = $_SESSION['id'];
-   if(isset($datainfo)){
-     $dataProfile = new SignupController();
-     $dataProfile = $dataProfile->getInfoSetting($datainfo);
-   }
-  ?>
-  <?php
-    require_once('Includes/header.php')
-  ?>
+    require_once('Includes/header.php');
+    ?>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="./Public/Css/StyleClient.css">
+  
 
-<body class="profil-art">
-  <?php
-    require_once('Includes/sidebar.php')
-  ?>
-  <section class="main-content">
+  <nav class="navUser">
+      <div class="logo">
+        <img class="" src="./Public/Assets/logo.png" alt="LOGO">
+      </div>
+      <input type="checkbox" id="click">
+      <label for="click" class="menu-btn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <ul>
+        <li><a href="homeUser">Home</a></li>
+        <li><a href="profilClient">Profil</a></li>
+        <li><a href="SettingClient">setting</a></li>
+        <li><a href="contact">Contact</a></li>
+        <li><a href="logout">Se deconnecter</a></li>
+      </ul>
+  </nav>
+  <section class="main-content mb-2">
     <div class="container">
-      <h1 class="text-center mb-5">Profile D'artistes</h1>
+      <h1 class="text-center mb-5">Profile Client</h1>
       <div class="row">
         <div class="col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
           <div class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center">
@@ -51,8 +66,7 @@
       </div>
     </div>
   </section>
-
-
+  
   <?php
     require_once('Includes/footer.php')
   ?>

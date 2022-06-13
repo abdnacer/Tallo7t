@@ -44,6 +44,35 @@
         return $setting;
       }
     }
+
+    public function updateClient(){
+      if(isset($_POST['update'])){
+        if(!empty($_POST['password'])){
+          $data = array(
+            'id'            => $_POST['id'],
+            'name_complete' => $_POST['name_complete'],
+            'username'      => $_POST['username'],
+            'phone'         => $_POST['phone'],
+            'nationalite'   => $_POST['nationalite'],
+            'email'         => $_POST['email'],
+            'password'      => password_hash($_POST['password'], PASSWORD_DEFAULT),
+            'pass'          => $_POST['password'],
+          );
+          $updateSetting = new Client();
+          $updateSetting = $updateSetting->update($data);
+          
+          if($updateSetting == 'An User data has been Update'){
+            header('location: profilClient');
+          }
+          else{
+            echo $result;
+          }
+        }
+        else{
+          return true;
+        }
+    }
+    }
   }
 
 ?>

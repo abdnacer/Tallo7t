@@ -2,6 +2,7 @@
   $id = $_POST['id'];
   $id_Post = $_POST['id_Post'];
   if(isset($_POST['submit'])){
+    $_SESSION['name'] = $_POST['name_complet'];
     $order = new ClientController();
     $orderRoute = $order->AddOrder();
   }

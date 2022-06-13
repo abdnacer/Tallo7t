@@ -13,12 +13,16 @@ require_once './controllers/homeController.php';
    'Profile',
    'Settings',
    'logout',
-   'dashboardAdmin',
    'Postuler',
    'homeUser',
    'addOrder',
    'editePost',
-   'SettingClient'];
+   'SettingClient',
+   'profilClient',
+   'dashboardAdmin',
+   'client',
+   'PostArtistes',
+   ];
 
    
       if(isset($_GET['page'])){
@@ -26,7 +30,7 @@ require_once './controllers/homeController.php';
             $page = $_GET['page'];
             $home->index($page);
          }else {
-            include('views/includes/404.php');
+            include('Views/includes/404.php');
          }
       }else{
          $home->index('home');

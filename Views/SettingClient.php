@@ -5,8 +5,11 @@
       $data = $data->getInfoSetting($datainfo);
     }
 
-    // var_dump($data);
-    // die();
+    if(isset($_POST['update'])){
+      $retourData = new ClientController();
+      $retourData = $retourData->updateClient();
+      $message = ($data == true) ? "password Not change" : "";
+    }
   ?>
   <?php
     require_once('Includes/Client/header.php')
@@ -22,9 +25,9 @@
       </label>
       <ul>
         <li><a href="homeUser">Home</a></li>
-        <li><a href="profile">Profil</a></li>
+        <li><a href="profilClient">Profil</a></li>
         <li><a href="SettingClient">setting</a></li>
-        <li><a href="contact">Contact</a></li>
+        <li><a href="contactClient">Contact</a></li>
         <li><a href="logout">Se deconnecter</a></li>
       </ul>
   </nav>
@@ -33,7 +36,7 @@
       <!-- Text input -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form6Example3">Image</label>
-        <input type="file" name="avatar" id="form6Example3" class="form-control shadow-none phone" />
+        <input type="file" name="avatar" id="form6Example3" class="form-control shadow-none phone">
         <div class="errorPhone text-danger"></div>
       </div>
       <!-- 2 column grid layout with text inputs for the first and last names -->

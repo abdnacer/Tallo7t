@@ -3,32 +3,31 @@
   $dataPost = $dataid->getAllPost();
 
 ?>
-  <?php
-    require_once('Includes/Client/header.php')
-  ?>
-  
+<?php
+  require_once('Includes/header.php')
+?>
 
-  <nav class="navUser">
-      <div class="logo">
-        <img class="" src="./Public/Assets/logo.png" alt="LOGO">
-      </div>
-      <input type="checkbox" id="click">
-      <label for="click" class="menu-btn">
-        <i class="fas fa-bars"></i>
-      </label>
-      <ul>
-        <li><a href="homeUser">Home</a></li>
-        <li><a href="profilClient">Profil</a></li>
-        <li><a href="SettingClient">setting</a></li>
-        <li><a href="contact">Contact</a></li>
-        <li><a href="logout">Se deconnecter</a></li>
-      </ul>
-  </nav>
-    <div class="container-fuild card-group d-flex align-items-center justify-content-start  flex-wrap gap-3 ms-4 mt-5 mx-5">
+<body class="body-art">
+
+<?php
+  require_once('Includes/Admin/sidebar.php')
+?>
+
+<section id="interface">
+    <?php
+      require_once('Includes/Admin/navbar.php')
+    ?>
+
+    <h3 class="i-name">
+      Dashboard Admin
+    </h3>
+
+    <!-- <div class="board"> -->
+      <div class="container-fuild card-group d-flex align-items-center justify-content-start  flex-wrap gap-3 ms-4 mt-5">
       <?php 
         foreach($dataPost as $dataClient):
       ?>
-      <div class="card d-flex mb-3 justify-content-between me-4" style="min-width:300px; max-width:300px; "> 
+      <div class="card d-flex mb-5 ms-3 justify-content-between me-4" style="min-width:320px; max-width:320px; "> 
         <!-- z-index:-1; -->
       <div style="flex-basis: 350px; overflow:hidden">
           <img class="card-img-top " src="./Public/Images/image_1.png" alt="Card image cap" >
@@ -44,9 +43,10 @@
               <?php if($dataClient['status'] == 1){ ?>
                 <!-- <button type="submit" class="btn btn-dark" disabled>Buy</button> -->
                 <p class="mt-2 fw-bold" style="font-size: 14px;">Ce Tableaux Déja acheté</p>
-              <?php } 
+                <?php } 
                 else{ ?>
-                  <button type="submit" class="btn btn-dark mb-2 ">Buy</button>
+                  <p class="mt-2 fw-bold" style="font-size: 14px;">Ce Tableau N'est pas acheté</p>
+                  <!-- <button type="submit" class="btn btn-dark mb-2 ">Buy</button> -->
               <?php } ?>
              </form>
               <a href="" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></a>
@@ -56,15 +56,11 @@
       
       <?php endforeach ?>
       
+    <!-- </div> -->
     </div>
+  </section>
 
-
-
-
-
-
-
-  
-  <?php
+</body>
+<?php
     require_once('Includes/footer.php')
   ?>

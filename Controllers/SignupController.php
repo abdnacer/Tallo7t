@@ -47,14 +47,11 @@ class SignupController{
         'email' => $_POST['email'],
         'password' => $_POST['password']
       );
+
       $signin = new UserModal;
       $signin = $signin->getUser($data);
       if(password_verify($_POST['password'], $signin['password']) == true){
         $_SESSION['id'] = $signin['id'];
-        // $_SESSION['username'] = $signin['username'];
-        // $_SESSION['email'] = $signin['email'];
-        // $_SESSION['phone'] = $signin['phone'];
-        // $_SESSION['nationalite'] = $signin['nationalite'];
         if($signin['role'] == 'artiste'){
           header('location: dashboardArtistes');
         }
@@ -100,7 +97,7 @@ class SignupController{
         $updateSetting = $updateSetting->update($data);
         
         if($updateSetting == 'An User data has been Update'){
-          header('location: Settings');
+          header('location: profil');
         }
         else{
           echo $result;
@@ -111,10 +108,6 @@ class SignupController{
       }
   }
   }
-
-  // public function getImage(){
-  //   // 
-  // }
 }
 
 ?>
