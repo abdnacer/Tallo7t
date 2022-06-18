@@ -9,8 +9,8 @@
     }
 
     public function addUser($data){
-      $stmt = DB::connect()->prepare('INSERT INTO signup (name_complete, username, role, phone, nationalite, email, password, pass) 
-      VALUES (:name_complete, :username, :role, :phone, :nationalite, :email, :password, :pass)');
+      $stmt = DB::connect()->prepare('INSERT INTO signup (name_complete, username, role, phone, nationalite, email, password) 
+      VALUES (:name_complete, :username, :role, :phone, :nationalite, :email, :password)');
       $stmt->bindParam(':name_complete', $data['name_complete']);
       $stmt->bindParam(':username', $data['username']);
       $stmt->bindParam(':role', $data['role']);
@@ -18,7 +18,6 @@
       $stmt->bindParam(':nationalite', $data['nationalite']);
       $stmt->bindParam(':email', $data['email']);
       $stmt->bindParam(':password', $data['password']);
-      $stmt->bindParam(':pass', $data['pass']);
 
       if($stmt->execute()){
         return 'User is created successfully';
@@ -26,7 +25,7 @@
       else{
         return 'User was not created successfully';
       }
-      $stmt->close();
+      // $stmt->close();
       $stmt = null;
     }
 
@@ -40,44 +39,24 @@
       // $stmt->close();
     }
 
-    public function getinfo($data){
-      // $id = $data['id'];
-      $stmt = DB::connect()->prepare('SELECT * FROM `signup` WHERE id = :id');
-      $stmt->bindParam(':id', $data['id']);
-      $stmt->execute();
-      $get = $stmt->fetch(PDO::FETCH_ASSOC);
-      return $get;
-      $stmt = null;
-    }
-
-    public function update($data){
-      $stmt = DB::connect()->prepare('UPDATE `signup` SET 
-        name_complete = :name_complete, 
-        username = :username, 
-        phone = :phone, 
-        nationalite = :nationalite,
-        email = :email, 
-        password = :password,
-        pass = :pass
-        WHERE id = :id'
-        );
-
-      $stmt->bindParam(':name_complete', $data['name_complete']);
-      $stmt->bindParam(':username',      $data['username']);
-      $stmt->bindParam(':phone',         $data['phone']);
-      $stmt->bindParam(':nationalite',   $data['nationalite']);
-      $stmt->bindParam(':email',         $data['email']);
-      $stmt->bindParam(':password',      $data['password']);
-      $stmt->bindParam(':pass',          $data['pass']);
-      $stmt->bindParam(':id',            $data['id']);
+    public function AddContact($data){
+      $user = 'user';
+      $stmt = DB::connect()->prepare('INSERT INTO contact (name, email, phone, role, subject, message) 
+      VALUES (:name, :email, :phone, :role, :subject, :message)');
+      $stmt->bindParam(':name', $data['name']);
+      $stmt->bindParam(':email', $data['email']);
+      $stmt->bindParam(':phone', $data['phone']);
+      $stmt->bindParam(':role', $user);
+      $stmt->bindParam(':subject', $data['subject']);
+      $stmt->bindParam(':message', $data['message']);
 
       if($stmt->execute()){
-        return 'An User data has been Update';
+        return 'An Contact has been created in the list';
       }
       else{
-        return 'No data User was Update';
+        return 'No Contact was created in the list';
       }
-      $stmt->close();
+      // $stmt->close();
       $stmt = null;
     }
   }

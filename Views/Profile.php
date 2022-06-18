@@ -1,9 +1,17 @@
   <?php
-   $datainfo = $_SESSION['id'];
-   if(isset($datainfo)){
-     $dataProfile = new SignupController();
+  if ($_SESSION['role'] == 'artiste'){
+    $datainfo = $_SESSION['id'];
+    if(isset($datainfo)){
+     $dataProfile = new ArtistesController();
      $dataProfile = $dataProfile->getInfoSetting($datainfo);
-   }
+    }
+  }else if ($_SESSION['role'] == 'client') {
+    Redirect::to('homeUser');
+  } else if ($_SESSION['role'] == 'admin'){
+    Redirect::to('dashboardAdmin');
+  }else{
+    Redirect::to('logout');
+  }
   ?>
   <?php
     require_once('Includes/header.php')
@@ -21,7 +29,15 @@
           <div class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center">
             <div class="banner">
             </div>
-            <img src="./Public/image_user/avatar.png" alt="" class="img-circle mx-auto mb-3 bg-dark">
+            <img src="./Public/image_user/avatar.png 
+            <?php 
+            // if(isset($dataProfile['image'])){ 
+            //   echo $dataProfile['image'];
+            //   } else{
+            //       echo 'avatar.png';
+            //   } 
+              ?> ." 
+              alt="" class="img-circle mx-auto mb-3 bg-dark">
             <h3 class="mb-4 text-uppercase"><?= $dataProfile['username']?></h3>
             <div class="text-left mb-4">
               <p class="mb-2">

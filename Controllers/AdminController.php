@@ -13,5 +13,17 @@
       $dataClient = $dataClient->getClient();
       return $dataClient;
     }
+
+    public function getAllPost(){
+      $result = new Admin();
+      $result = $result->getAll();
+      return $result;
+    }
+
+    public function getContact(){
+      $contact = new Admin();
+      $result = $contact->getContact();
+      return $result;
+    }
   }
 ?>

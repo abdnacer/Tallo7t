@@ -1,6 +1,14 @@
 <?php
-  $dataid = new ClientController();
+if ($_SESSION['role'] == 'admin'){
+  $dataid = new adminController();
   $dataPost = $dataid->getAllPost();
+}else if ($_SESSION['role'] == 'artiste') {
+  Redirect::to('dashboardArtiste');
+} else if ($_SESSION['role'] == 'client'){
+  Redirect::to('homeUser');
+}else{
+  Redirect::to('logout');
+}
 
 ?>
 <?php
@@ -19,7 +27,7 @@
     ?>
 
     <h3 class="i-name">
-      Dashboard Admin
+      Posts
     </h3>
 
     <!-- <div class="board"> -->
@@ -29,10 +37,10 @@
       ?>
       <div class="card d-flex mb-5 ms-3 justify-content-between me-4" style="min-width:320px; max-width:320px; "> 
         <!-- z-index:-1; -->
-      <div style="flex-basis: 350px; overflow:hidden">
-          <img class="card-img-top " src="./Public/Images/image_1.png" alt="Card image cap" >
+      <div style="flex-basis: 350px; overflow:hidden;">
+          <img class="card-img-top " src="Public/image_user/<?= $dataClient['image'] ?>" alt="Card image cap" >
       </div> 
-      <div class="card-body flex-grow-0">
+      <div class="card-body flex-grow-0" >
           <h2 name="title" class="card-title m-0 fs-4 fw-bold"><?php echo $dataClient['title'] ?></h2>
           <p name="description" class="card-text mt-3"><?= $dataClient['description'] ?></p>
           <p name="price" class="card-text"><?= $dataClient['price'] ?>$</p>

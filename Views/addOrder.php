@@ -1,11 +1,19 @@
 <?php
+if($_SESSION['role'] == 'client'){
+  $URL = basename($_SERVER['REQUEST_URI']);
   $id = $_POST['id'];
   $id_Post = $_POST['id_Post'];
   if(isset($_POST['submit'])){
-    $_SESSION['name'] = $_POST['name_complet'];
     $order = new ClientController();
     $orderRoute = $order->AddOrder();
   }
+}else if($_SESSION['role'] == 'artiste'){
+  Redirect::to('dashboardArtistes');
+}else if ($_SESSION['role'] == 'admin'){
+  Redirect::to('dashboardAdmin');
+}else{
+  Redirect::to('logout');
+}
 ?>
 <?php
   require_once('Includes/Client/header.php')

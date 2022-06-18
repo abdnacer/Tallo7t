@@ -19,6 +19,22 @@
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
       // $stmt->close();
       $stmt = null;
-    }    
+    } 
+    
+    public function getAll(){
+      $stmt = DB::connect()->prepare("SELECT * FROM `post`");
+      $stmt->execute();
+      $get = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $get;
+      $stmt = null;
+    }
+
+    public function getContact(){
+      $stmt = DB::connect()->prepare('SELECT * FROM `contact`');
+      $stmt->execute();
+      $get = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      return $get;
+      $stmt = null;
+    }
   }
 ?>

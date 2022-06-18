@@ -1,6 +1,14 @@
 <?php 
+if ($_SESSION['role'] == 'admin'){
   $dataArtistes = new adminController();
   $dataArtistes = $dataArtistes->getArtistes();
+}else if ($_SESSION['role'] == 'client') {
+  Redirect::to('homeUser');
+} else if ($_SESSION['role'] == 'artiste') {
+  Redirect::to('dashboardArtistes');
+} else {
+  Redirect::to('logout');
+}
 ?>
 <?php
   require_once('Includes/header.php')
@@ -18,7 +26,7 @@
     ?>
 
     <h3 class="i-name">
-      Dashboard Admin
+      Artistes
     </h3>
 
     <div class="board">
@@ -26,10 +34,10 @@
         <thead>
           <tr>
             <td></td>
-            <td>Name Complet</td>
-            <td>Username</td>
-            <td>Phone</td>
-            <td>Address</td>
+            <td>Nom Complet</td>
+            <td>Nom d'utilisateur</td>
+            <td>Téléphoner</td>
+            <td>Adresse</td>
             <td>Email</td>
             <td>Date</td>
             <td>Action</td>

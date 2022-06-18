@@ -20,7 +20,11 @@
         </i>Profile</a>
       </li>
       <li>
-
+        <a href="contactArtiste">
+          <i class="fa-solid bi bi-person-lines-fill"></i>
+        </i>Contact</a>
+      </li>
+      <li>
         <a href="Settings">
           <input type="hidden" name="id" value="<?php echo $data['id'] ?>">
         <i class="fa-solid fa-gear">

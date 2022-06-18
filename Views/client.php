@@ -1,6 +1,15 @@
 <?php 
+if ($_SESSION['role'] == 'admin'){
   $dataClient = new adminController();
   $dataClient = $dataClient->getClient();
+}else if ($_SESSION['role'] == 'client') {
+  Redirect::to('homeUser');
+} else if ($_SESSION['role'] == 'artiste'){
+  Redirect::to('dashboardArtiste');
+}else{
+  Redirect::to('logout');
+}
+
 ?>
 
 <?php
@@ -19,7 +28,7 @@
     ?>
 
     <h3 class="i-name">
-      Dashboard Admin
+     Clients
     </h3>
 
     <div class="board">
@@ -33,7 +42,6 @@
             <td>Address</td>
             <td>Email</td>
             <td>Date</td>
-            <td>Action</td>
           </tr>
         </thead>
       <tbody>
@@ -70,12 +78,6 @@
 
           <td class="date">
             <p><?= $dataCl['date'] ?></p>
-          </td>
-
-          <td class="edit">
-          <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="border-0 bg-white p-0 fs-4">
-            <i class="bi bi-trash-fill ms-3"></i>
-          </button>
           </td>
         </tr>
         <?php

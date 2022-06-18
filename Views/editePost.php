@@ -1,36 +1,44 @@
 <?php
-  if(isset($_POST['id'])){
+if ($_SESSION['role'] == 'artiste'){
+  if (isset($_POST['id'])) {
     $getPost = new ArtistesController();
     $getPost = $getPost->getOnePost();
   }
-
-  if(isset($_POST['update'])){
+  
+  if (isset($_POST['update'])) {
     $post = new ArtistesController();
     $post->updatePost();
   }
+}else if ($_SESSION['role'] == 'client') {
+  Redirect::to('homeUser');
+} else if ($_SESSION['role'] == 'admin') {
+  Redirect::to('dashboardAdmin');
+}
 ?>
 <?php
-    require_once('Includes/header.php')
-  ?>
+require_once('Includes/header.php')
+?>
+
 <body class="body-art">
-<?php
-    require_once('Includes/sidebar.php')
+  <?php
+  require_once('Includes/sidebar.php')
   ?>
 
   <section id="interface">
     <?php
-      require_once('Includes/navbar.php')
+    require_once('Includes/navbar.php')
     ?>
 
     <h3 class="i-name">
-      Dashboard Artiste
+      Edit Post
     </h3>
 
     <form method='POST' class="mx-5 my-4" id="form">
       <!-- Image input -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form6Example3">Image</label>
-        <input type="file" name="image" id="form6Example3" value="<?= $getPost['image'] ?>" class="form-control shadow-none phone" />
+        <input type="file" name="imageShow" id="form6Example3" class="form-control shadow-none phone" />
+        <input type="hidden" name="image" id="form6Example3" value="<?= $getPost['image'] ?>" class="form-control shadow-none phone" />
         <div class="errorPhone text-danger"></div>
       </div>
 
@@ -47,26 +55,24 @@
         <input type="text" name="price" id="form6Example2" value="<?= $getPost['price'] ?>" class="form-control shadow-none price" />
         <div class="errorUsername text-danger"></div>
       </div>
-    
+
       <!-- Text input -->
-      <div class="form-outline mb-4">
+      <div class="form-group mt-3">
         <label class="form-label" for="form6Example3">Description</label>
-        <input type="text" name="description" id="form6Example3" value="<?= $getPost['description'] ?>" class="form-control shadow-none description" />
-        <div class="errorPhone text-danger"></div>
+        <textarea type="text" name="description" id="form6Example3" value="<?= $getPost['description'] ?>" class="form-control shadow-none description mb-4" rows="4" cols="50" maxlength="200"><?= $getPost['description'] ?></textarea>
+        <div class="text-danger fs-6 errorMessage"></div>
       </div>
-    
-      
-    
+
       <!-- Submit button -->
       <form method="POST">
-        <input type="hidden" name="id" value="<?= $getPost['id'];?>">
-        <button type="submit" name="update" class="btn btn-dark btn-block mb-4 shadow-none">Update</button>
+        <input type="hidden" name="id" value="<?= $getPost['id']; ?>">
+        <button type="submit" name="update" class="btn btn-dark btn-block shadow-none px-4">Update</button>
       </form>
-    </form>  
-    
+    </form>
+
   </section>
 
-  <!-- <script>
+  <script>
     let form = document.querySelector('.form')
     let name = document.querySelector('.name_complete')
     let username = document.querySelector('.username')
@@ -146,9 +152,9 @@
             password.style.border = ''
         }
     })  
-  </script> -->
+  </script>
 
-  
+
   <?php
-    require_once('Includes/footer.php')
+  require_once('Includes/footer.php')
   ?>

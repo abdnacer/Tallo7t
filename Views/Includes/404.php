@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link rel="stylesheet" href="../../Public/Css/bootstrap.css">
+    <link rel="stylesheet" href="./Public/Css/bootstrap.css">
     
 </head>
 <body>

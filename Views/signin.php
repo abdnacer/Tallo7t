@@ -3,6 +3,7 @@
     $data = new SignupController();
     $data = $data->signin();
     $message = ($data == false) ? "email or password not correct" : "";
+    $message = ($data == true) ? "Email or password not found" : "";
   }
 ?>
 
@@ -23,32 +24,34 @@
               <div class="col-md-6 col-lg-7 d-flex align-items-center">
                 <div class="card-body p-4 p-lg-5 text-black" >
   
-                  <form method="POST">
+                  <form method="POST" id="form">
   
                     <div class="d-flex align-items-center mb-5">
-                      <span class="h1 fw-bold mb-0">LOGIN</span>
+                      <span class="h1 fw-bold mb-0">Connexion</span>
                     </div>
   
-                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
+                    <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Connectez-vous à votre compte</h5>
   
                     <div class="form-outline mb-4">
                       <label class="form-label" for="form2Example17">Email</label>
-                      <input type="email" name="email" id="form2Example17" class="form-control form-control-lg shadow-none" />
+                      <input type="email" name="email" id="email" class="form-control form-control-lg shadow-none" />
+                      <div class="text-danger fs-6 errorEmail"></div>
                       <div class="text-danger"><?php if(isset($message)) echo $message ?></div>
                     </div>
   
                     <div class="form-outline mb-4">
-                      <label class="form-label" for="form2Example27">Password</label>
-                      <input type="password" name="password" id="form2Example27" class="form-control form-control-lg shadow-none" />
+                      <label class="form-label" for="form2Example27">Mot de passe</label>
+                      <input type="password" name="password" id="password" class="form-control form-control-lg shadow-none" />
+                      <div class="text-danger fs-6 errorPassword"></div>
                       <div class="text-danger"><?php if(isset($message)) echo $message ?></div>
                     </div>
   
                     <div class="pt-1 mb-4">
-                      <button type="submit" name="submit" class="btn btn-dark btn-lg btn-block px-5 py-1 shadow-none">Login</button>
+                      <button type="submit" name="submit" class="btn btn-dark btn-lg btn-block px-5 py-1 shadow-none">Connexion</button>
                     </div>
                     
-                    <p class="mb-5 pb-lg-2" style="color: #393f81;">Don't have an account? <a href="signup"
-                        style="color: #393f81;">Register here</a></p>
+                    <p class="mb-5 pb-lg-2" style="color: #393f81;">Vous n'avez pas de compte ? <a href="signup"
+                        style="color: #393f81;">Inscrivez-vous ici</a></p>
                   </form>
   
                 </div>
@@ -60,6 +63,60 @@
     </div>
   </section>
   
+  <script>
+    let form = document.querySelector('#form')
+    let email = document.querySelector('#email')
+    let password = document.getElementById('password')
+
+    let errorEmail = document.querySelector('.errorEmail')
+    let errorPassword = document.querySelector('.errorPassword')
+
+
+    form.addEventListener('submit', (e) => {
+      let regexEmail = /^[A-Za-z0-9_-]{4,}@[a-z]{4,10}[.]{1}[a-z]{3,4}$/;
+      if (email.value.trim() == '') {
+        e.preventDefault();
+        errorEmail.textContent = 'email is empty';
+        email.style.border = '1px solid red'
+      } else if (!regexEmail.test(email.value.trim())) {
+        e.preventDefault()
+        errorEmail.textContent = 'Email no empty sous forme example@email.com'
+        email.style.border = '1px solid red'
+      } else {
+        errorEmail.textContent = ''
+        email.style.border = ''
+      }
+
+      if (password.value.trim() == '') {
+        e.preventDefault()
+        errorPassword.textContent = "password is empty"
+        password.style.border = '1px solid red'
+      } else {
+        errorPassword.textContent = ""
+        password.style.border = ''
+      }
+    })
+  </script>
+   <script src="./Public/Js/jquery.min.js"></script>
+    <script src="./Public/Js/royal_preloader.min.js"></script>
+
+
+    <script>
+            window.jQuery = window.$ = jQuery;
+            (function($) { "use strict";
+                //Preloader
+                Royal_Preloader.config({
+                    mode           : 'logo',
+                    logo           : './Public/Assets/logo_white.png',
+                    logo_size: [200,200],
+                    showProgress   : true,
+                    showPercentage : true,
+                    // text_colour: '#ffffff',
+                    background:  '#000'
+                });
+            })(jQuery);
+        </script>
+
   <?php
     require_once('Includes/footer.php')
   ?>

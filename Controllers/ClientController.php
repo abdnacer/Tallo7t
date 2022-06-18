@@ -4,12 +4,14 @@
 
   class ClientController{
 
+    // Affichage des Post le Client
     public function getAllPost(){
       $result = new Client();
       $result = $result->getAll();
       return $result;
     }
 
+    // Achat De Produit et envoyer un order l'artiste
     public function addOrder(){
       if(isset($_POST['submit'])){
         $data = array(
@@ -20,13 +22,14 @@
           'ville'        => $_POST['ville'],
           'address'      => $_POST['address'],
           'code_postale' => $_POST['code_postale'],
-          'phone'        => $_POST['phone'],
+          'phone'        => $_POST['phone']
         );
         $result = new Client();
         $resultPost = $result->addOrder($data);
         
         if($resultPost == 'An Order has been created in the list'){
-          header('location: homeUser');
+          Redirect::to('homeUser');
+          // header('location: homeUser');
         }
         else{
           echo $result;
@@ -34,6 +37,7 @@
       }
     }
 
+    // get les Information de Client Pour l'Edite
     public function getInfoSetting($datainfo){
       if(isset($datainfo)){
         $data = array(
@@ -45,33 +49,52 @@
       }
     }
 
+    // Edite des Informations De Client
     public function updateClient(){
       if(isset($_POST['update'])){
-        if(!empty($_POST['password'])){
           $data = array(
             'id'            => $_POST['id'],
             'name_complete' => $_POST['name_complete'],
             'username'      => $_POST['username'],
             'phone'         => $_POST['phone'],
             'nationalite'   => $_POST['nationalite'],
-            'email'         => $_POST['email'],
-            'password'      => password_hash($_POST['password'], PASSWORD_DEFAULT),
-            'pass'          => $_POST['password'],
+            'email'         => $_POST['email']
           );
           $updateSetting = new Client();
           $updateSetting = $updateSetting->update($data);
           
           if($updateSetting == 'An User data has been Update'){
-            header('location: profilClient');
+            Redirect::to('profilClient');
+            // header('location: profilClient');
           }
           else{
-            echo $result;
+            echo $updateSetting;
           }
+    }
+    }
+
+    // Créer le contact qui envoie l'administrateur
+    public function addContact(){
+      if(isset($_POST['submit'])){
+        $data = array(
+          'name' => $_POST['name'],
+          'email' => $_POST['email'],
+          'phone' => $_POST['phone'],
+          'subject' => $_POST['subject'],
+          'message' => $_POST['message']
+        );
+
+        $contact = new Client();
+        $result= $contact->addContact($data);
+
+        if($result == 'An Contact has been created in the list'){
+          Redirect::to('homeUser');
+          // header('location: homeUser');
         }
         else{
-          return true;
+          echo $result;
         }
-    }
+      }
     }
   }
 

@@ -21,13 +21,12 @@ class SignupController{
           'phone' => $_POST['phone'],
           'nationalite' => $_POST['nationalite'],
           'email' => $_POST['email'],
-          'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
-          'pass' => $_POST['password'],
+          'password' => password_hash($_POST['password'], PASSWORD_DEFAULT)
         );
           $result = new UserModal();
           $result = $result->addUser($data);
           if($result == 'User is created successfully'){
-            header('location: signin');
+            Redirect::to('signin');
           }
           else{
             echo $result;
@@ -47,67 +46,51 @@ class SignupController{
         'email' => $_POST['email'],
         'password' => $_POST['password']
       );
-
       $signin = new UserModal;
       $signin = $signin->getUser($data);
       if(password_verify($_POST['password'], $signin['password']) == true){
-        $_SESSION['id'] = $signin['id'];
-        if($signin['role'] == 'artiste'){
-          header('location: dashboardArtistes');
-        }
-        else if($signin['role'] == 'client'){
-          header('location: homeUser');
-        }
-        else{
-          header('location: dashboardAdmin');
-        }
+          $_SESSION['id'] = $signin['id'];
+          $_SESSION['role'] = $signin['role'];
+          if($signin['role'] == 'artiste'){
+            Redirect::to('dashboardArtistes');
+          }
+          else if($signin['role'] == 'client'){
+            Redirect::to('homeUser');
+          }
+          else{
+            Redirect::to('dashboardAdmin');
+          }
       }
       else{
         return false;
       }
       
+      
     }
   }
 
-  public function getInfoSetting($datainfo){
-    if(isset($datainfo)){
+  public function AddContact(){
+    if(isset($_POST['submit'])){
       $data = array(
-        'id' => $datainfo
+        'name' => $_POST['name'],
+        'email' => $_POST['email'],
+        'phone' => $_POST['phone'],
+        'subject' => $_POST['subject'],
+        'message' => $_POST['message']
       );
-      $setting = new UserModal();
-      $setting = $setting->getinfo($data);
-      return $setting;
-    }
-  }
 
-  public function updateUser(){
-    if(isset($_POST['update'])){
-      if(!empty($_POST['password'])){
-        $data = array(
-          'id'            => $_POST['id'],
-          'name_complete' => $_POST['name_complete'],
-          'username'      => $_POST['username'],
-          'phone'         => $_POST['phone'],
-          'nationalite'   => $_POST['nationalite'],
-          'email'         => $_POST['email'],
-          'password'      => password_hash($_POST['password'], PASSWORD_DEFAULT),
-          'pass'          => $_POST['password'],
-        );
-        $updateSetting = new UserModal();
-        $updateSetting = $updateSetting->update($data);
-        
-        if($updateSetting == 'An User data has been Update'){
-          header('location: profil');
-        }
-        else{
-          echo $result;
-        }
+      $contact = new UserModal();
+      $result = $contact->AddContact($data);
+      if($result == 'An Contact has been Delete in the list'){
+        Redirect::to('home');
+        // header('location: home');
       }
       else{
-        return true;
+        echo $result;
       }
+    }
   }
-  }
+    
 }
 
 ?>

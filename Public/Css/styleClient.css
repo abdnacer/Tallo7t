@@ -23,7 +23,7 @@
 }
 
 .navUser ul li a{
-  color: rgba(17, 17, 17, 0.7);
+  color: rgba(17, 17, 17, 0.626);
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
@@ -56,11 +56,14 @@ input[type="checkbox"]{
 @media (max-width: 920px) {
   .navUser .menu-btn i{
     display: block;
+    color: black;
+    font-size: 28px;
   }
   #click:checked ~ .menu-btn i:before{
     content: "\f00d";
   }
   .navUser ul{
+    z-index: 1;
     position: fixed;
     top: 80px;
     left: -100%;
@@ -86,6 +89,7 @@ input[type="checkbox"]{
     transition: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
   #click:checked ~ ul li a{
+    color: white;
     margin-left: 0px;
   }
   .navUser ul li a.active,
