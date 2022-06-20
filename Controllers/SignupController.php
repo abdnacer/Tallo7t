@@ -44,28 +44,38 @@ class SignupController{
     if(isset($_POST['submit'])){
       $data = array(
         'email' => $_POST['email'],
-        'password' => $_POST['password']
+        'password' => password_hash($_POST['password'],PASSWORD_DEFAULT)
       );
+
       $signin = new UserModal;
       $signin = $signin->getUser($data);
-      if(password_verify($_POST['password'], $signin['password']) == true){
-          $_SESSION['id'] = $signin['id'];
-          $_SESSION['role'] = $signin['role'];
-          if($signin['role'] == 'artiste'){
-            Redirect::to('dashboardArtistes');
-          }
-          else if($signin['role'] == 'client'){
-            Redirect::to('homeUser');
-          }
-          else{
-            Redirect::to('dashboardAdmin');
-          }
-      }
+      if($signin != 0){
+        // if($data['email'] == $signin['email']){
+          
+          if(password_verify($_POST['password'] , $signin['password'])==true){
+              $_SESSION['id'] = $signin['id'];
+              $_SESSION['role'] = $signin['role'];
+              if($signin['role'] == 'artiste'){
+                Redirect::to('dashboardArtistes');
+              }
+              else if($signin['role'] == 'client'){
+                Redirect::to('homeUser');
+              }
+              else{
+                Redirect::to('dashboardAdmin');
+              }
+              
+              }
+              else{
+                return "Password inccorect";
+              }
+        }
+      // }
       else{
-        return false;
+        return "email inccorect";
       }
       
-      
+      // }
     }
   }
 

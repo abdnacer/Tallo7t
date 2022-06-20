@@ -1,8 +1,6 @@
 <?php
-// require_once 'validateSession.php';
 require_once './autoload.php';
 require_once './controllers/homeController.php';
-// require_once './Views/alert.php';
 
  $home = new homeController();
 

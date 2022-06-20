@@ -40,7 +40,6 @@ if ($_SESSION['role'] == 'admin'){
             <td>Adresse</td>
             <td>Email</td>
             <td>Date</td>
-            <td>Action</td>
           </tr>
         </thead>  
       <tbody>
@@ -77,12 +76,6 @@ if ($_SESSION['role'] == 'admin'){
 
           <td class="date">
             <p><?= $dataArt['date'] ?></p>
-          </td>
-
-          <td class="edit">
-          <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="border-0 bg-white p-0 fs-4">
-            <i class="bi bi-trash-fill ms-3"></i>
-          </button>
           </td>
         </tr>
         <?php

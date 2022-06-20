@@ -1,9 +1,9 @@
 <?php
   if(isset($_POST['submit'])){
-    $data = new SignupController();
-    $data = $data->signin();
-    $message = ($data == false) ? "email or password not correct" : "";
-    $message = ($data == true) ? "Email or password not found" : "";
+    $dataSignin = new SignupController();
+    $data = $dataSignin->signin();
+    $message = (!empty($data) && $data == 'email inccorect') ? $data : "";
+    $messagePassword = (!empty($data) && $data == 'Password inccorect') ? $data : "";
   }
 ?>
 
@@ -43,7 +43,7 @@
                       <label class="form-label" for="form2Example27">Mot de passe</label>
                       <input type="password" name="password" id="password" class="form-control form-control-lg shadow-none" />
                       <div class="text-danger fs-6 errorPassword"></div>
-                      <div class="text-danger"><?php if(isset($message)) echo $message ?></div>
+                      <div class="text-danger"><?php if(isset($messagePassword)) echo $messagePassword ?></div>
                     </div>
   
                     <div class="pt-1 mb-4">

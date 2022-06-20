@@ -79,7 +79,7 @@ require_once('Includes/Client/header.php')
   </div>
 </div>
 
-<script src="https://www.paypal.com/sdk/js?client-id="></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AaZVtSP_rZ6Lcf4JLZUnKKwyd-ZMBu9C88U6uToCeIG5mLFWrr-5VdSekQM9dksegYjIzNFL4M5ZKycV&currency=EUR"></script>
 <script>
   paypal.Buttons({
     createOrder: function(data, actions) {

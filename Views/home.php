@@ -41,7 +41,7 @@
           <h2>Website</h2>
           <p class="fs-4" style="letter-spacing: 4px;">TALLO7T est une platforme d'art qui présent les différentes offres des tebleaux artistique afin de faciliter l’achat et introduire la culture artistique dans la société</p>
           <div class="d-flex justify-content-center justify-content-lg-start">
-            <a href="Signup" class="btn-get-started mb-5">Get Started</a>
+            <a href="signup" class="btn-get-started mb-5">Get Started</a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
