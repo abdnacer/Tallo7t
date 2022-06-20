@@ -5,7 +5,7 @@
     </div>
     <div class="search">
       <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="search" name="search" type="search" onkeyup="search()" placeholder="Search">
+      <input type="text" id="search" name="search" type="search"  placeholder="Search">
     </div>
   </div>
 

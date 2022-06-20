@@ -1,6 +1,9 @@
 <section id="menu">
     <div class="logo">
-      <img class="" src="./Public/Assets/logo.png" alt="LOGO">
+      <div class="d-flex align-items-center">
+        <img class="" src="./Public/Assets/logo.png" alt="LOGO">
+        <i id="close" class="bi bi-x-circle fs-2 ms-5" style="display: none;"></i>
+      </div>
     </div>
 
     <div class="items">

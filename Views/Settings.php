@@ -1,6 +1,6 @@
 <?php
 if ($_SESSION['role'] == 'artiste'){
-  $datainfo = $_SESSION['id'];
+    $datainfo = $_SESSION['id'];
     if(isset($datainfo)){
       $data = new ArtistesController();
       $data = $data->getInfoSetting($datainfo);

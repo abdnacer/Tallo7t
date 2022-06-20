@@ -29,14 +29,7 @@
           <div class="profile-card card rounded-lg shadow p-4 p-xl-5 mb-4 text-center">
             <div class="banner">
             </div>
-            <img src="./Public/image_user/avatar.png 
-            <?php 
-            // if(isset($dataProfile['image'])){ 
-            //   echo $dataProfile['image'];
-            //   } else{
-            //       echo 'avatar.png';
-            //   } 
-              ?> ." 
+            <img src="./Public/image_user/avatar.png" 
               alt="" class="img-circle mx-auto mb-3 bg-dark">
             <h3 class="mb-4 text-uppercase"><?= $dataProfile['username']?></h3>
             <div class="text-left mb-4">

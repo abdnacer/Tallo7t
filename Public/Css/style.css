@@ -371,6 +371,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 9;
 }
 
 #menu .logo {
@@ -489,7 +490,8 @@
   align-items: center;
 }
 
-#menu-btn{
+#menu-btn,
+#close{
   display: none;
   color: #2b2b2b;
   font-size: 25px;
@@ -570,6 +572,8 @@
   #menu-btn{
     display: initial;
   }
+
+
 
   #menu.active{
     left: 0;
@@ -699,3 +703,15 @@
   color: #fcfcfc;
 }
 
+
+
+.activBar {
+  z-index: 9;
+  /* box-shadow: 1px 1px 20px grey; */
+  left: 0px !important;
+  transition: 0.3s ease;
+}
+
+.closBlock{
+  display: block !important;
+}

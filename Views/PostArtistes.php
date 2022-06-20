@@ -35,7 +35,7 @@ if ($_SESSION['role'] == 'admin'){
       <?php 
         foreach($dataPost as $dataClient):
       ?>
-      <div class="card d-flex mb-5 ms-3 justify-content-between me-4" style="min-width:320px; max-width:320px; "> 
+      <div class="card d-flex mb-5 ms-3 justify-content-between me-4" style="min-width:320px; max-width:320px; z-index: -1;"> 
         <!-- z-index:-1; -->
       <div style="flex-basis: 350px; overflow:hidden;">
           <img class="card-img-top " src="Public/image_user/<?= $dataClient['image'] ?>" alt="Card image cap" >

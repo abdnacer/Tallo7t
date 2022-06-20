@@ -34,8 +34,8 @@ if ($_SESSION['role'] == 'admin'){
       <?php
       foreach($result as $getContact):
       ?>
-    <div class="card d-flex mb-5 ms-3 justify-content-between me-4 p-3" style="min-width:500px; max-width:500px; border-radius: 18px; box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);">
-      <div class="card-body" style="color: rgb(143, 141, 151);">
+    <div class="card d-flex mb-5 ms-3 justify-content-between me-4 p-3" style=" background-color: rgb(249 246 246);min-width:500px; max-width:500px; border-radius: 18px; box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25); z-index: -1;">
+      <div class="card-body" >
         <h4 class="card-title mb-3" >Name : <span class="fs-5 text-dark"><?php echo $getContact['name'] ?></span> </h4>
         <h4 class="card-text mb-3">Email : <span class="fs-5 text-dark"><?php echo $getContact['email'] ?></span></h4>
         <h4 class="card-text mb-3">Phone : <span class="fs-5 text-dark"><?php echo $getContact['phone'] ?></span></h4>

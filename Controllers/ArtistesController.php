@@ -36,7 +36,6 @@ class ArtistesController{
       $result = $result->addPostModal($data);
       if($result == 'An Post has been created in the list'){
         Redirect::to('Postuler');
-        // header('location: Postuler');
       }
       else{
         echo $result;
@@ -64,7 +63,6 @@ class ArtistesController{
       $results = $result->deleteOrder($data);
       if($results == 'An Contact has been Deleted in the list'){
         Redirect::to('dashboardArtistes');
-        // header('location: dashboardArtistes');
       }
       else{
         echo $result;
@@ -89,9 +87,11 @@ class ArtistesController{
     if(isset($_POST['update'])){
       $data = array(
         'id'          => $_POST['id'],
-        'imageShow'   => $_POST['imageShow'],
-        'image'       => $_POST['image'],
         'title'       => $_POST['title'],
+        // likatban
+        'imageShow'   => $_FILES['imageShow'],
+        // li makatbanch
+        'image'       => $_POST['image'],
         'price'       => $_POST['price'],
         'description' => $_POST['description']
       );
@@ -100,7 +100,6 @@ class ArtistesController{
       $postUpdate = $postUpdate->updatePost($data);
       if($postUpdate == 'An Post data has been Update'){
         Redirect::to('Postuler');
-        // header('location: Postuler');
       }
       else{
         echo $postUpdate;
@@ -143,6 +142,7 @@ class ArtistesController{
     if(isset($_POST['update'])){
         $data = array(
           'id'            => $_POST['id'],
+          'image'         => $_POST['image'],
           'name_complete' => $_POST['name_complete'],
           'username'      => $_POST['username'],
           'phone'         => $_POST['phone'],

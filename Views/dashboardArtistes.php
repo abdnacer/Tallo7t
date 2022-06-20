@@ -130,9 +130,8 @@ require_once('Includes/header.php')
 
     searchInput.addEventListener('input', function() {
       let value = searchInput.value.toUpperCase()
-      console.log(value);
       let columns = [...document.querySelectorAll('.name-row')]
-
+      
       columns.forEach(column => {
         if (!column.textContent.toUpperCase().trim().startsWith(value)) {
           column.parentElement.style.display = 'none';

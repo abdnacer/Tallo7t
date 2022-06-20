@@ -32,7 +32,7 @@ require_once('Includes/Client/header.php')
     <li><a href="logout">Se deconnecter</a></li>
   </ul>
 </nav>
-<div class="container-fuild card-group d-flex align-items-center justify-content-start  flex-wrap gap-3 ms-4 mt-5 mx-5">
+<div class="container-fuild card-group d-flex align-items-center justify-content-start flex-wrap gap-3 ms-4 mt-5" style="padding-left: 55px;">
   <?php
   foreach ($dataPost as $dataAdmin) :
   ?>
@@ -78,14 +78,15 @@ require_once('Includes/Client/header.php')
     </div>
   </div>
 </div>
-<script src="https://www.paypal.com/sdk/js?client-id=AaZVtSP_rZ6Lcf4JLZUnKKwyd-ZMBu9C88U6uToCeIG5mLFWrr-5VdSekQM9dksegYjIzNFL4M5ZKycV&currency=EUR"></script>
+
+<script src="https://www.paypal.com/sdk/js?client-id="></script>
 <script>
   paypal.Buttons({
     createOrder: function(data, actions) {
       return actions.order.create({
         purchase_units: [{
           amount: {
-            value: '10.0'
+            value: '1000.0'
           }
         }]
       });

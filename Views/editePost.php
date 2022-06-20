@@ -33,7 +33,7 @@ require_once('Includes/header.php')
       Edit Post
     </h3>
 
-    <form method='POST' class="mx-5 my-4" id="form">
+    <form method='POST' class="mx-5 my-4" id="form" enctype="multipart/form-data">
       <!-- Image input -->
       <div class="form-outline mb-4">
         <label class="form-label" for="form6Example3">Image</label>
@@ -48,21 +48,21 @@ require_once('Includes/header.php')
         <input type="text" name="title" id="form6Example1" value="<?= $getPost['title'] ?>" class="form-control shadow-none title" />
         <div class="errorName text-danger"></div>
       </div>
-
-
+      
+      
       <div class="form-outline">
         <label class="form-label" for="form6Example2">Price</label>
         <input type="text" name="price" id="form6Example2" value="<?= $getPost['price'] ?>" class="form-control shadow-none price" />
         <div class="errorUsername text-danger"></div>
       </div>
-
+      
       <!-- Text input -->
       <div class="form-group mt-3">
         <label class="form-label" for="form6Example3">Description</label>
         <textarea type="text" name="description" id="form6Example3" value="<?= $getPost['description'] ?>" class="form-control shadow-none description mb-4" rows="4" cols="50" maxlength="200"><?= $getPost['description'] ?></textarea>
         <div class="text-danger fs-6 errorMessage"></div>
       </div>
-
+      
       <!-- Submit button -->
       <form method="POST">
         <input type="hidden" name="id" value="<?= $getPost['id']; ?>">

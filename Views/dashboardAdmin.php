@@ -42,7 +42,7 @@ if ($_SESSION['role'] == 'admin'){
             <td>Date</td>
             <td>Action</td>
           </tr>
-        </thead>
+        </thead>  
       <tbody>
         
         <?php 

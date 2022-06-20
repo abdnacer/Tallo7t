@@ -238,7 +238,7 @@ require_once('Includes/header.php')
   </script>
 
    <script src="./Public/Js/jquery.min.js"></script>
-    <script src="./Public/Js/royal_preloader.min.js"></script>
+  <script src="./Public/Js/royal_preloader.min.js"></script>
 
 
     <script>
@@ -251,7 +251,6 @@ require_once('Includes/header.php')
                     logo_size: [200,200],
                     showProgress   : true,
                     showPercentage : true,
-                    // text_colour: '#ffffff',
                     background:  '#000'
                 });
             })(jQuery);
