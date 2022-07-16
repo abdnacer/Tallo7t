@@ -97,7 +97,7 @@
       }
     })
   </script>
-   <script src="./Public/Js/jquery.min.js"></script>
+    <script src="./Public/Js/jquery.min.js"></script>
     <script src="./Public/Js/royal_preloader.min.js"></script>
 
 

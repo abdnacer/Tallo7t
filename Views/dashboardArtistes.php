@@ -7,10 +7,12 @@ if ($_SESSION['role'] == 'artiste') {
     $exiteOrder = new ArtistesController();
     $exiteOrder->deleteOrder();
   }
-} else if ($_SESSION['role'] == 'client') {
-  Redirect::to('homeUser');
-} else if ($_SESSION['role'] == 'admin') {
+}else if($_SESSION['role'] == 'artiste'){
+  Redirect::to('dashboardArtistes');
+}else if ($_SESSION['role'] == 'admin'){
   Redirect::to('dashboardAdmin');
+}else{
+  Redirect::to('logout');
 }
 ?>
 

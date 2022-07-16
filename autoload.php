@@ -16,7 +16,7 @@
 
     foreach($array_paths as $path){
 
-    $file = sprintf($path. '%s.php',$name);
+    $file = sprintf($path. '%s.php', $name);
     if(is_file($file)){
         include_once $file;
     }
